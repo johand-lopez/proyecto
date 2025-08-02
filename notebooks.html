@@ -1,0 +1,1135 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Análisis Exploratorio de Datos de Acciones &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+    <link rel="prev" title="Markdown Files" href="markdown.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis Exploratorio de Datos de Acciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/notebooks.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Análisis Exploratorio de Datos de Acciones</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial">1. Configuración Inicial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">2. Carga de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-y-preparacion-de-datos">3. Limpieza y Preparación de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">4. Análisis Univariado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-empresas">5. Análisis de Empresas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">6. Análisis Bivariado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-temporal">7. Análisis Temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-por-empresa">8. Análisis por Empresa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dividendos-y-splits">9. Dividendos y Splits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hallazgos-clave">10. Hallazgos Clave</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-datos-de-acciones">
+<h1>Análisis Exploratorio de Datos de Acciones<a class="headerlink" href="#analisis-exploratorio-de-datos-de-acciones" title="Link to this heading">#</a></h1>
+<p>Este script realiza un análisis completo de datos históricos de acciones.
+Incluye carga de datos, limpieza, análisis univariado/bivariado, temporal y por empresa.</p>
+<section id="configuracion-inicial">
+<h2>1. Configuración Inicial<a class="headerlink" href="#configuracion-inicial" title="Link to this heading">#</a></h2>
+<p>En esta sección se importan las librerías necesarias y se establecen configuraciones básicas para visualización.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.float_format&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">&quot;husl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="carga-de-datos">
+<h2>2. Carga de Datos<a class="headerlink" href="#carga-de-datos" title="Link to this heading">#</a></h2>
+<p>Se carga el archivo Excel que contiene la información de precios históricos de acciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">johan</span><span class="se">\\</span><span class="s2">OneDrive - Universidad del Norte</span><span class="se">\\</span><span class="s2">Escritorio</span><span class="se">\\</span><span class="s2">MachineLearning</span><span class="se">\\</span><span class="s2">proyecto</span><span class="se">\\</span><span class="s2">datos</span><span class="se">\\</span><span class="s2">stock_details_5_years_edit.xlsx&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;openpyxl&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Datos cargados exitosamente&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔍 Primeras filas del dataset:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error al cargar los datos: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">file_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">johan</span><span class="se">\\</span><span class="s2">OneDrive - Universidad del Norte</span><span class="se">\\</span><span class="s2">Escritorio</span><span class="se">\\</span><span class="s2">MachineLearning</span><span class="se">\\</span><span class="s2">proyecto</span><span class="se">\\</span><span class="s2">datos</span><span class="se">\\</span><span class="s2">stock_details_5_years_edit.xlsx&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;openpyxl&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Datos cargados exitosamente&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔍 Primeras filas del dataset:&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\pandas\io\excel\_base.py:517,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">511</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">512</span>         <span class="s2">&quot;Engine should not be specified when passing &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">513</span>         <span class="s2">&quot;an ExcelFile - ExcelFile already has the engine set&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">514</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">516</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">517</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span>         <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">520</span>         <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">521</span>         <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span>         <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">523</span>         <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span>         <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span>         <span class="n">true_values</span><span class="o">=</span><span class="n">true_values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">526</span>         <span class="n">false_values</span><span class="o">=</span><span class="n">false_values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span>         <span class="n">skiprows</span><span class="o">=</span><span class="n">skiprows</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span>         <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">529</span>         <span class="n">na_values</span><span class="o">=</span><span class="n">na_values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">530</span>         <span class="n">keep_default_na</span><span class="o">=</span><span class="n">keep_default_na</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span>         <span class="n">na_filter</span><span class="o">=</span><span class="n">na_filter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span>         <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">533</span>         <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">534</span>         <span class="n">date_parser</span><span class="o">=</span><span class="n">date_parser</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span>         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">536</span>         <span class="n">thousands</span><span class="o">=</span><span class="n">thousands</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">537</span>         <span class="n">decimal</span><span class="o">=</span><span class="n">decimal</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">538</span>         <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">539</span>         <span class="n">skipfooter</span><span class="o">=</span><span class="n">skipfooter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span>         <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">542</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span>     <span class="c1"># make sure to close opened file handles</span>
+<span class="g g-Whitespace">    </span><span class="mi">544</span>     <span class="k">if</span> <span class="n">should_close</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\pandas\io\excel\_base.py:1629,</span> in <span class="ni">ExcelFile.parse</span><span class="nt">(self, sheet_name, header, names, index_col, usecols, converters, true_values, false_values, skiprows, nrows, na_values, parse_dates, date_parser, date_format, thousands, comment, skipfooter, dtype_backend, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1589</span> <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1590</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1591</span>     <span class="n">sheet_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1609</span>     <span class="o">**</span><span class="n">kwds</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1610</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">]</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">]:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1611</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1612</span><span class="sd">     Parse specified sheet(s) into a DataFrame.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1613</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1627</span><span class="sd">     &gt;&gt;&gt; file.parse()  # doctest: +SKIP</span>
+<span class="g g-Whitespace">   </span><span class="mi">1628</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1629</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1630</span>         <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1631</span>         <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1632</span>         <span class="n">names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1633</span>         <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1634</span>         <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1635</span>         <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1636</span>         <span class="n">true_values</span><span class="o">=</span><span class="n">true_values</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1637</span>         <span class="n">false_values</span><span class="o">=</span><span class="n">false_values</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1638</span>         <span class="n">skiprows</span><span class="o">=</span><span class="n">skiprows</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1639</span>         <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1640</span>         <span class="n">na_values</span><span class="o">=</span><span class="n">na_values</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1641</span>         <span class="n">parse_dates</span><span class="o">=</span><span class="n">parse_dates</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1642</span>         <span class="n">date_parser</span><span class="o">=</span><span class="n">date_parser</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1643</span>         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1644</span>         <span class="n">thousands</span><span class="o">=</span><span class="n">thousands</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1645</span>         <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1646</span>         <span class="n">skipfooter</span><span class="o">=</span><span class="n">skipfooter</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1647</span>         <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1648</span>         <span class="o">**</span><span class="n">kwds</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1649</span>     <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\pandas\io\excel\_base.py:793,</span> in <span class="ni">BaseExcelReader.parse</span><span class="nt">(self, sheet_name, header, names, index_col, usecols, dtype, true_values, false_values, skiprows, nrows, na_values, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, dtype_backend, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span>     <span class="n">sheet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sheet_by_index</span><span class="p">(</span><span class="n">asheetname</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span> <span class="n">file_rows_needed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_rows</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">index_col</span><span class="p">,</span> <span class="n">skiprows</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">793</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sheet_data</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">file_rows_needed</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">794</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s2">&quot;close&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">795</span>     <span class="c1"># pyxlsb opens two TemporaryFiles</span>
+<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="n">sheet</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\pandas\io\excel\_openpyxl.py:616,</span> in <span class="ni">OpenpyxlReader.get_sheet_data</span><span class="nt">(self, sheet, file_rows_needed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Scalar</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span> <span class="n">last_row_with_data</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="ne">--&gt; </span><span class="mi">616</span> <span class="k">for</span> <span class="n">row_number</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">rows</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span>     <span class="n">converted_row</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_convert_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">618</span>     <span class="k">while</span> <span class="n">converted_row</span> <span class="ow">and</span> <span class="n">converted_row</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span>         <span class="c1"># trim trailing empty elements</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\openpyxl\worksheet\_read_only.py:85,</span> in <span class="ni">ReadOnlyWorksheet._cells_by_row</span><span class="nt">(self, min_col, min_row, max_col, max_row, values_only)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_source</span><span class="p">()</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">WorkSheetParser</span><span class="p">(</span><span class="n">src</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>                              <span class="bp">self</span><span class="o">.</span><span class="n">_shared_strings</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>                              <span class="n">data_only</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">data_only</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span>                              <span class="n">epoch</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">epoch</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span>                              <span class="n">date_formats</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">_date_formats</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span>                              <span class="n">timedelta_formats</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">_timedelta_formats</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">85</span>     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">():</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span>         <span class="k">if</span> <span class="n">max_row</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="n">max_row</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span>             <span class="k">break</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\openpyxl\worksheet\_reader.py:156,</span> in <span class="ni">WorkSheetParser.parse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span> <span class="n">properties</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span>     <span class="n">PRINT_TAG</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;print_options&#39;</span><span class="p">,</span> <span class="n">PrintOptions</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span>     <span class="n">MARGINS_TAG</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;page_margins&#39;</span><span class="p">,</span> <span class="n">PageMargins</span><span class="p">),</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span> 
+<span class="g g-Whitespace">    </span><span class="mi">152</span> <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="n">it</span> <span class="o">=</span> <span class="n">iterparse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">)</span> <span class="c1"># add a finaliser to close the source when this becomes possible</span>
+<span class="ne">--&gt; </span><span class="mi">156</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span>     <span class="n">tag_name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span>     <span class="k">if</span> <span class="n">tag_name</span> <span class="ow">in</span> <span class="n">dispatcher</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\xml\etree\ElementTree.py:1255,</span> in <span class="ni">iterparse.&lt;locals&gt;.iterator</span><span class="nt">(source)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1253</span> <span class="k">yield from</span> <span class="n">pullparser</span><span class="o">.</span><span class="n">read_events</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1254</span> <span class="c1"># load event buffer</span>
+<span class="ne">-&gt; </span><span class="mi">1255</span> <span class="n">data</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1256</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1257</span>     <span class="k">break</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\zipfile.py:926,</span> in <span class="ni">ZipExtFile.read</span><span class="nt">(self, n)</span>
+<span class="g g-Whitespace">    </span><span class="mi">924</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">    </span><span class="mi">925</span> <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">926</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">927</span>     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">928</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_readbuffer</span> <span class="o">=</span> <span class="n">data</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\zipfile.py:1002,</span> in <span class="ni">ZipExtFile._read1</span><span class="nt">(self, n)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1000</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compress_type</span> <span class="o">==</span> <span class="n">ZIP_DEFLATED</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1001</span>     <span class="n">n</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_READ_SIZE</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1002</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1003</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">eof</span> <span class="ow">or</span>
+<span class="g g-Whitespace">   </span><span class="mi">1004</span>                  <span class="bp">self</span><span class="o">.</span><span class="n">_compress_left</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">and</span>
+<span class="g g-Whitespace">   </span><span class="mi">1005</span>                  <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">unconsumed_tail</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1006</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="limpieza-y-preparacion-de-datos">
+<h2>3. Limpieza y Preparación de Datos<a class="headerlink" href="#limpieza-y-preparacion-de-datos" title="Link to this heading">#</a></h2>
+<p>Aquí se corrigen y eliminan datos faltantes, se crean variables necesarias y se ordena el conjunto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🧹 Limpieza y preparación de datos:&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="s1">&#39;Day&#39;</span><span class="p">]])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;Company&#39;</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Valores faltantes por columna:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Open&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">,</span> <span class="s1">&#39;Low&#39;</span><span class="p">,</span> <span class="s1">&#39;Close&#39;</span><span class="p">,</span> <span class="s1">&#39;Volume&#39;</span><span class="p">])</span>
+<span class="n">duplicates</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Company&#39;</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Número de registros duplicados: </span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🧹 Limpieza y preparación de datos:
+
+Valores faltantes por columna:
+Year            0
+Month           0
+Day             0
+Open            0
+High            0
+Low             0
+Close           0
+Volume          0
+Dividends       0
+Stock Splits    0
+Company         0
+Date            0
+dtype: int64
+
+Número de registros duplicados: 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-univariado">
+<h2>4. Análisis Univariado<a class="headerlink" href="#analisis-univariado" title="Link to this heading">#</a></h2>
+<p>Se examinan las variables numéricas de forma individual mediante estadísticas y visualizaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📈 Análisis univariado:&quot;</span><span class="p">)</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Open&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">,</span> <span class="s1">&#39;Low&#39;</span><span class="p">,</span> <span class="s1">&#39;Close&#39;</span><span class="p">,</span> <span class="s1">&#39;Volume&#39;</span><span class="p">,</span> <span class="s1">&#39;Dividends&#39;</span><span class="p">,</span> <span class="s1">&#39;Stock Splits&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📌 Estadísticas descriptivas:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Distribución de </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">numeric_cols</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Boxplot de </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔎 Detección de outliers (IQR):&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_cols</span><span class="p">:</span>
+    <span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+    <span class="n">outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span><span class="p">)]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span><span class="si">}</span><span class="s2"> posibles outliers&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📈 Análisis univariado:
+
+📌 Estadísticas descriptivas:
+                        Open                   High                    Low  \
+count             602,962.00             602,962.00             602,962.00   
+mean  354,050,867,559,971.94 357,099,597,945,996.62 356,198,787,147,536.69   
+std   262,875,719,040,279.28 262,224,644,898,754.25 261,287,634,642,990.25   
+min                     2.00                   2.00                   2.00   
+25%   143,316,544,487,642.00 145,670,363,615,691.75 145,100,003,242,492.50   
+50%   278,636,063,041,001.50 281,459,991,455,078.00 280,759,888,385,497.00   
+75%   534,343,497,703,405.00 537,514,821,704,700.00 535,399,861,889,090.75   
+max   999,991,111,207,832.00 999,995,953,133,339.00 999,999,892,473,531.00   
+
+                       Close           Volume    Dividends  Stock Splits  
+count             602,962.00       602,962.00   602,962.00    602,962.00  
+mean  360,262,079,629,602.62     5,895,601.18        56.41          0.05  
+std   260,907,266,301,343.66    13,815,961.83    10,987.27          7.89  
+min                     2.00             0.00         0.00          0.00  
+25%   148,483,024,597,167.75     1,031,500.00         0.00          0.00  
+50%   285,900,001,525,879.00     2,228,700.00         0.00          0.00  
+75%   539,361,295,700,073.50     5,277,400.00         0.00          0.00  
+max   999,991,607,666,016.00 1,123,003,300.00 5,051,406.00      1,973.00  
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+</pre></div>
+</div>
+<img alt="_images/d0bf7500c4dd13af8984ff48b1a0e82f7e9191f4237e689ba98ad8fe3dd3b81a.png" src="_images/d0bf7500c4dd13af8984ff48b1a0e82f7e9191f4237e689ba98ad8fe3dd3b81a.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+</pre></div>
+</div>
+<img alt="_images/d3c11a71fec4a0aceb18e4425e2c2963c45076c3fca3d5a5a6849f6dd27a3242.png" src="_images/d3c11a71fec4a0aceb18e4425e2c2963c45076c3fca3d5a5a6849f6dd27a3242.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🔎 Detección de outliers (IQR):
+Open: 0 posibles outliers
+High: 0 posibles outliers
+Low: 0 posibles outliers
+Close: 0 posibles outliers
+Volume: 66419 posibles outliers
+Dividends: 6857 posibles outliers
+Stock Splits: 71 posibles outliers
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-de-empresas">
+<h2>5. Análisis de Empresas<a class="headerlink" href="#analisis-de-empresas" title="Link to this heading">#</a></h2>
+<p>Se explora cuántas empresas hay y cuáles son las más representadas en el dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🏢 Análisis de empresas:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Empresas únicas: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 10 empresas con más registros:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🏢 Análisis de empresas:
+Empresas únicas: 491
+
+Top 10 empresas con más registros:
+Company
+A       1258
+NTR     1258
+ORAN    1258
+ON      1258
+OKE     1258
+ODFL    1258
+O       1258
+NXPI    1258
+NWG     1258
+NVS     1258
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-bivariado">
+<h2>6. Análisis Bivariado<a class="headerlink" href="#analisis-bivariado" title="Link to this heading">#</a></h2>
+<p>Se analizan relaciones entre pares de variables numéricas, como correlaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔗 Análisis bivariado:&quot;</span><span class="p">)</span>
+<span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Matriz de Correlación&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Open&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Close&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Precio de Apertura vs Cierre&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🔗 Análisis bivariado:
+</pre></div>
+</div>
+<img alt="_images/c11467bccad8bb96ab2e6d3270818b9ffec275b988dae5fb960a4dbdb6990951.png" src="_images/c11467bccad8bb96ab2e6d3270818b9ffec275b988dae5fb960a4dbdb6990951.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+</pre></div>
+</div>
+<img alt="_images/a6f8b53b987126d67efe1ce2944a38be396d45ab8c01c59aa7eecb80dd1b8a28.png" src="_images/a6f8b53b987126d67efe1ce2944a38be396d45ab8c01c59aa7eecb80dd1b8a28.png" />
+</div>
+</div>
+</section>
+<section id="analisis-temporal">
+<h2>7. Análisis Temporal<a class="headerlink" href="#analisis-temporal" title="Link to this heading">#</a></h2>
+<p>Se observa la evolución en el tiempo de precios y volúmenes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📅 Análisis temporal:&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">yearly_avg</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)[[</span><span class="s1">&#39;Open&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">,</span> <span class="s1">&#39;Low&#39;</span><span class="p">,</span> <span class="s1">&#39;Close&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">yearly_avg</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Precios Promedio por Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Volume&#39;</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Volumen Total por Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📅 Análisis temporal:
+</pre></div>
+</div>
+<img alt="_images/165a183234ae8acbe3e04317d7ddf3bd468d47b027cf17a236d262cabebd9da0.png" src="_images/165a183234ae8acbe3e04317d7ddf3bd468d47b027cf17a236d262cabebd9da0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\johan\AppData\Local\Temp\ipykernel_36320\1002435345.py:10: FutureWarning: 
+
+The `ci` parameter is deprecated. Use `errorbar=None` for the same effect.
+
+  sns.barplot(data=df, x=&#39;Year&#39;, y=&#39;Volume&#39;, estimator=np.sum, ci=None)
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+c:\Users\johan\miniconda3\envs\ml_venv\lib\site-packages\seaborn\_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+</pre></div>
+</div>
+<img alt="_images/3fe6679016115a018213444f9662247eab87d95d8d8c6c2a19cf4c2950dab398.png" src="_images/3fe6679016115a018213444f9662247eab87d95d8d8c6c2a19cf4c2950dab398.png" />
+</div>
+</div>
+</section>
+<section id="analisis-por-empresa">
+<h2>8. Análisis por Empresa<a class="headerlink" href="#analisis-por-empresa" title="Link to this heading">#</a></h2>
+<p>Se analiza la evolución de precios de cierre para las empresas con mayor volumen de operaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🏭 Análisis por empresa:&quot;</span><span class="p">)</span>
+<span class="n">top_companies</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Company&#39;</span><span class="p">)[</span><span class="s1">&#39;Volume&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 5 empresas con mayor volumen de operaciones:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">top_companies</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">top_companies</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">company_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Company&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">company</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">company_data</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Evolución del Precio de Cierre - </span><span class="si">{</span><span class="n">company</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Precio&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Fecha&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🏭 Análisis por empresa:
+
+Top 5 empresas con mayor volumen de operaciones:
+Company
+TSLA    168480836215
+AAPL    130583503785
+AMZN     97650968962
+AMD      84350178302
+F        81579990070
+Name: Volume, dtype: int64
+</pre></div>
+</div>
+<img alt="_images/6f39ad0b513abb66f89f73ac64c349aa699159724e2c81e8a8ea785ded827f2b.png" src="_images/6f39ad0b513abb66f89f73ac64c349aa699159724e2c81e8a8ea785ded827f2b.png" />
+<img alt="_images/e8afcbde862fee1c465cf6280ad0921bcaa681ed4ad660cc94eb6a0f94a02661.png" src="_images/e8afcbde862fee1c465cf6280ad0921bcaa681ed4ad660cc94eb6a0f94a02661.png" />
+<img alt="_images/a530469c8015be16e6bcf470c5f6b160c8cbd01de256de952da8b9cc007df34d.png" src="_images/a530469c8015be16e6bcf470c5f6b160c8cbd01de256de952da8b9cc007df34d.png" />
+<img alt="_images/3df1f7ad315a361e99c1b2647b1f6c75de3e2e06d151cc766bfbd3d75932d569.png" src="_images/3df1f7ad315a361e99c1b2647b1f6c75de3e2e06d151cc766bfbd3d75932d569.png" />
+<img alt="_images/c319a349e2a22190bf687f2038d52259a3503ea3d37da7667b4a41a097a57481.png" src="_images/c319a349e2a22190bf687f2038d52259a3503ea3d37da7667b4a41a097a57481.png" />
+</div>
+</div>
+</section>
+<section id="dividendos-y-splits">
+<h2>9. Dividendos y Splits<a class="headerlink" href="#dividendos-y-splits" title="Link to this heading">#</a></h2>
+<p>Se identifican empresas que han pagado dividendos o realizado splits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">💰 Dividendos y splits:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Empresas que pagaron dividendos:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Dividends&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Empresas que realizaron splits:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Stock Splits&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Company&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>💰 Dividendos y splits:
+
+Empresas que pagaron dividendos:
+[&#39;A&#39; &#39;AAPL&#39; &#39;ABBV&#39; &#39;ABEV&#39; &#39;ABT&#39; &#39;ACN&#39; &#39;ADI&#39; &#39;ADM&#39; &#39;ADP&#39; &#39;AEE&#39; &#39;AEM&#39; &#39;AEP&#39;
+ &#39;AFL&#39; &#39;AIG&#39; &#39;AJG&#39; &#39;ALC&#39; &#39;ALL&#39; &#39;AMAT&#39; &#39;AME&#39; &#39;AMGN&#39; &#39;AMP&#39; &#39;AMT&#39; &#39;AON&#39; &#39;APD&#39;
+ &#39;APH&#39; &#39;APO&#39; &#39;APTV&#39; &#39;ARES&#39; &#39;ASML&#39; &#39;AVB&#39; &#39;AVGO&#39; &#39;AWK&#39; &#39;AXP&#39; &#39;AZN&#39; &#39;BA&#39;
+ &#39;BAC&#39; &#39;BBD&#39; &#39;BBVA&#39; &#39;BCE&#39; &#39;BCS&#39; &#39;BDX&#39; &#39;BEKE&#39; &#39;BHP&#39; &#39;BK&#39; &#39;BKR&#39; &#39;BLK&#39; &#39;BMO&#39;
+ &#39;BMY&#39; &#39;BN&#39; &#39;BNS&#39; &#39;BNTX&#39; &#39;BP&#39; &#39;BR&#39; &#39;BRO&#39; &#39;BSBR&#39; &#39;BTI&#39; &#39;BUD&#39; &#39;BX&#39; &#39;C&#39; &#39;CAH&#39;
+ &#39;CARR&#39; &#39;CAT&#39; &#39;CB&#39; &#39;CCEP&#39; &#39;CCI&#39; &#39;CCJ&#39; &#39;CCL&#39; &#39;CDW&#39; &#39;CEG&#39; &#39;CHD&#39; &#39;CHT&#39; &#39;CI&#39;
+ &#39;CL&#39; &#39;CM&#39; &#39;CMCSA&#39; &#39;CME&#39; &#39;CMI&#39; &#39;CNI&#39; &#39;CNQ&#39; &#39;COF&#39; &#39;COP&#39; &#39;COR&#39; &#39;COST&#39; &#39;CP&#39;
+ &#39;CQP&#39; &#39;CRH&#39; &#39;CSCO&#39; &#39;CSX&#39; &#39;CTAS&#39; &#39;CTRA&#39; &#39;CTSH&#39; &#39;CTVA&#39; &#39;CVE&#39; &#39;CVS&#39; &#39;CVX&#39;
+ &#39;D&#39; &#39;DAL&#39; &#39;DB&#39; &#39;DD&#39; &#39;DE&#39; &#39;DELL&#39; &#39;DEO&#39; &#39;DFS&#39; &#39;DG&#39; &#39;DHI&#39; &#39;DHR&#39; &#39;DIS&#39; &#39;DLR&#39;
+ &#39;DOV&#39; &#39;DOW&#39; &#39;DTE&#39; &#39;DUK&#39; &#39;DVN&#39; &#39;E&#39; &#39;EA&#39; &#39;EBAY&#39; &#39;EC&#39; &#39;ECL&#39; &#39;ED&#39; &#39;EFX&#39; &#39;EIX&#39;
+ &#39;EL&#39; &#39;ELP&#39; &#39;ELV&#39; &#39;EMR&#39; &#39;ENB&#39; &#39;EOG&#39; &#39;EPD&#39; &#39;EQIX&#39; &#39;EQNR&#39; &#39;EQR&#39; &#39;ES&#39; &#39;ET&#39;
+ &#39;ETN&#39; &#39;ETR&#39; &#39;EXC&#39; &#39;EXR&#39; &#39;F&#39; &#39;FANG&#39; &#39;FAST&#39; &#39;FCNCA&#39; &#39;FCX&#39; &#39;FDX&#39; &#39;FE&#39; &#39;FERG&#39;
+ &#39;FIS&#39; &#39;FITB&#39; &#39;FMX&#39; &#39;FNV&#39; &#39;FTS&#39; &#39;FTV&#39; &#39;GD&#39; &#39;GE&#39; &#39;GEHC&#39; &#39;GILD&#39; &#39;GIS&#39; &#39;GLW&#39;
+ &#39;GM&#39; &#39;GOLD&#39; &#39;GPN&#39; &#39;GRMN&#39; &#39;GS&#39; &#39;GSK&#39; &#39;GWW&#39; &#39;HAL&#39; &#39;HCA&#39; &#39;HD&#39; &#39;HDB&#39; &#39;HEI&#39;
+ &#39;HES&#39; &#39;HIG&#39; &#39;HLN&#39; &#39;HLT&#39; &#39;HMC&#39; &#39;HON&#39; &#39;HPE&#39; &#39;HPQ&#39; &#39;HSBC&#39; &#39;HSY&#39; &#39;HUM&#39; &#39;HWM&#39;
+ &#39;IBKR&#39; &#39;IBM&#39; &#39;IBN&#39; &#39;ICE&#39; &#39;IFF&#39; &#39;IMO&#39; &#39;INFY&#39; &#39;ING&#39; &#39;INTC&#39; &#39;INTU&#39; &#39;INVH&#39;
+ &#39;IR&#39; &#39;ITUB&#39; &#39;ITW&#39; &#39;JCI&#39; &#39;JD&#39; &#39;JNJ&#39; &#39;JPM&#39; &#39;KDP&#39; &#39;KHC&#39; &#39;KKR&#39; &#39;KLAC&#39; &#39;KMB&#39;
+ &#39;KMI&#39; &#39;KO&#39; &#39;KR&#39; &#39;KVUE&#39; &#39;LEN&#39; &#39;LHX&#39; &#39;LIN&#39; &#39;LLY&#39; &#39;LMT&#39; &#39;LNG&#39; &#39;LOW&#39; &#39;LRCX&#39;
+ &#39;LVS&#39; &#39;LYB&#39; &#39;LYG&#39; &#39;MA&#39; &#39;MAR&#39; &#39;MCD&#39; &#39;MCHP&#39; &#39;MCK&#39; &#39;MCO&#39; &#39;MDLZ&#39; &#39;MDT&#39; &#39;MET&#39;
+ &#39;MFC&#39; &#39;MLM&#39; &#39;MMC&#39; &#39;MMM&#39; &#39;MO&#39; &#39;MPLX&#39; &#39;MPWR&#39; &#39;MRK&#39; &#39;MRVL&#39; &#39;MS&#39; &#39;MSCI&#39;
+ &#39;MSFT&#39; &#39;MSI&#39; &#39;MT&#39; &#39;MTB&#39; &#39;MU&#39; &#39;NDAQ&#39; &#39;NEE&#39; &#39;NEM&#39; &#39;NGG&#39; &#39;NKE&#39; &#39;NOC&#39; &#39;NOK&#39;
+ &#39;NSC&#39; &#39;NTES&#39; &#39;NTR&#39; &#39;NUE&#39; &#39;NVDA&#39; &#39;NVO&#39; &#39;NVS&#39; &#39;NWG&#39; &#39;NXPI&#39; &#39;O&#39; &#39;ODFL&#39; &#39;OKE&#39;
+ &#39;ORAN&#39; &#39;ORCL&#39; &#39;OTIS&#39; &#39;OXY&#39; &#39;PAYX&#39; &#39;PBR&#39; &#39;PCAR&#39; &#39;PDX&#39; &#39;PEG&#39; &#39;PEP&#39; &#39;PFE&#39;
+ &#39;PG&#39; &#39;PGR&#39; &#39;PH&#39; &#39;PLD&#39; &#39;PM&#39; &#39;PNC&#39; &#39;PPG&#39; &#39;PPL&#39; &#39;PRU&#39; &#39;PSA&#39; &#39;PSX&#39; &#39;PUK&#39;
+ &#39;PWR&#39; &#39;PXD&#39; &#39;QCOM&#39; &#39;QSR&#39; &#39;RACE&#39; &#39;RCI&#39; &#39;RCL&#39; &#39;RELX&#39; &#39;RIO&#39; &#39;RJF&#39; &#39;RMD&#39;
+ &#39;ROK&#39; &#39;ROL&#39; &#39;ROST&#39; &#39;RSG&#39; &#39;RTX&#39; &#39;RY&#39; &#39;SAN&#39; &#39;SAP&#39; &#39;SBAC&#39; &#39;SBUX&#39; &#39;SCCO&#39;
+ &#39;SCHW&#39; &#39;SHEL&#39; &#39;SHW&#39; &#39;SLB&#39; &#39;SLF&#39; &#39;SNY&#39; &#39;SO&#39; &#39;SPG&#39; &#39;SPGI&#39; &#39;SRE&#39; &#39;STE&#39;
+ &#39;STLA&#39; &#39;STM&#39; &#39;STT&#39; &#39;STZ&#39; &#39;SU&#39; &#39;SYK&#39; &#39;SYY&#39; &#39;T&#39; &#39;TD&#39; &#39;TDG&#39; &#39;TEF&#39; &#39;TEL&#39;
+ &#39;TFC&#39; &#39;TGT&#39; &#39;TJX&#39; &#39;TLK&#39; &#39;TMO&#39; &#39;TRGP&#39; &#39;TRI&#39; &#39;TROW&#39; &#39;TRP&#39; &#39;TRV&#39; &#39;TS&#39; &#39;TSCO&#39;
+ &#39;TSM&#39; &#39;TT&#39; &#39;TTE&#39; &#39;TU&#39; &#39;TW&#39; &#39;TXN&#39; &#39;UBS&#39; &#39;UL&#39; &#39;UMC&#39; &#39;UNH&#39; &#39;UNP&#39; &#39;UPS&#39; &#39;URI&#39;
+ &#39;USB&#39; &#39;V&#39; &#39;VALE&#39; &#39;VICI&#39; &#39;VLO&#39; &#39;VMC&#39; &#39;VOD&#39; &#39;VRSK&#39; &#39;VZ&#39; &#39;WAB&#39; &#39;WCN&#39; &#39;WDS&#39;
+ &#39;WEC&#39; &#39;WELL&#39; &#39;WFC&#39; &#39;WIT&#39; &#39;WM&#39; &#39;WMB&#39; &#39;WMT&#39; &#39;WPM&#39; &#39;WST&#39; &#39;WTW&#39; &#39;WY&#39; &#39;XEL&#39;
+ &#39;XOM&#39; &#39;XYL&#39; &#39;YUM&#39; &#39;ZBH&#39; &#39;ZTS&#39;]
+
+Empresas que realizaron splits:
+[&#39;AAPL&#39; &#39;AMZN&#39; &#39;ANET&#39; &#39;APH&#39; &#39;BBD&#39; &#39;BDX&#39; &#39;BHP&#39; &#39;BN&#39; &#39;CM&#39; &#39;CNC&#39; &#39;CNQ&#39; &#39;CP&#39;
+ &#39;CPRT&#39; &#39;CSGP&#39; &#39;CSX&#39; &#39;DD&#39; &#39;DELL&#39; &#39;DHR&#39; &#39;DTE&#39; &#39;DXCM&#39; &#39;ELP&#39; &#39;EW&#39; &#39;EXC&#39;
+ &#39;FAST&#39; &#39;FTNT&#39; &#39;FTV&#39; &#39;GE&#39; &#39;GOOGL&#39; &#39;GSK&#39; &#39;HDB&#39; &#39;IBM&#39; &#39;ISRG&#39; &#39;ITUB&#39; &#39;MCHP&#39;
+ &#39;MRK&#39; &#39;NDAQ&#39; &#39;NEE&#39; &#39;NTES&#39; &#39;NVDA&#39; &#39;NVO&#39; &#39;NVS&#39; &#39;NWG&#39; &#39;O&#39; &#39;ODFL&#39; &#39;PANW&#39;
+ &#39;PCAR&#39; &#39;PFE&#39; &#39;PUK&#39; &#39;RJF&#39; &#39;ROL&#39; &#39;RTX&#39; &#39;SHOP&#39; &#39;SHW&#39; &#39;SRE&#39; &#39;T&#39; &#39;TRI&#39; &#39;TSLA&#39;
+ &#39;TT&#39; &#39;TTD&#39; &#39;TU&#39; &#39;ZBH&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hallazgos-clave">
+<h2>10. Hallazgos Clave<a class="headerlink" href="#hallazgos-clave" title="Link to this heading">#</a></h2>
+<p>Resumen de observaciones importantes obtenidas durante el EDA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔑 Hallazgos clave del EDA:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Precios muestran distribuciones asimétricas.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Alta correlación entre Open, High, Low y Close.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Volumen altamente sesgado.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. Pocas empresas pagan dividendos regularmente.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5. Existen valores atípicos que requieren revisión.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;6. Precios presentan variaciones y tendencias anuales.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🔑 Hallazgos clave del EDA:
+1. Precios muestran distribuciones asimétricas.
+2. Alta correlación entre Open, High, Low y Close.
+3. Volumen altamente sesgado.
+4. Pocas empresas pagan dividendos regularmente.
+5. Existen valores atípicos que requieren revisión.
+6. Precios presentan variaciones y tendencias anuales.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="markdown.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Markdown Files</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="markdown-notebooks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-inicial">1. Configuración Inicial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">2. Carga de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-y-preparacion-de-datos">3. Limpieza y Preparación de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-univariado">4. Análisis Univariado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-empresas">5. Análisis de Empresas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-bivariado">6. Análisis Bivariado</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-temporal">7. Análisis Temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-por-empresa">8. Análisis por Empresa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dividendos-y-splits">9. Dividendos y Splits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hallazgos-clave">10. Hallazgos Clave</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
